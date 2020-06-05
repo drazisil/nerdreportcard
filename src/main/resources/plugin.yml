@@ -1,0 +1,52 @@
+name: NerdReportCard
+main: net.jwebnet.nerdreportcard.NerdReportCard
+version: 1.2
+
+commands:
+    rcreload:
+        description: Reload report card data
+        usage: /rcreload
+        permission: nerdreportcard.admin
+        permission-message: You don't have permission
+    rcadd:
+        description: Add to a player's report card.
+        usage: /rcadd <player_name> {points} <reason>
+        permission: nerdreportcard.add
+        permission-message: You don't have permission
+    rcedit:
+        description: Edit a report card line.
+        usage: /rcedit <#report_id> {points} <note>
+        permission: nerdreportcard.edit
+        permission-message: You don't have permission
+    rcremove:
+        description: Delete a report card line.
+        usage: /rcremove <#report_id>
+        permission: nerdreportcard.remove
+        permission-message: You don't have permission      
+    rclist:
+        description: View a player's report card.
+        usage: /rclist {player}
+        permission: nerdreportcard.list
+        permission-message: You don't have permission
+    rcid:
+        description: View a player's report card.
+        usage: /rcid <#report_id>
+        permission: nerdreportcard.search
+        permission-message: You don't have permission     
+permissions:
+    nerdreportcard.edit:                    
+        description: Gives access to add, delete and update report cards
+        children:
+            nerdreportcard.add: true
+            nerdreportcard.remove: true
+    nerdreportcard.list.others:
+        description: Gives access to view other players
+        children:
+            nerdreportcard.list: true
+    nerdreportcard.admin:                   
+        description: Can view, edit, and search all cards
+        children:
+            nerdreportcard.list: true
+            nerdreportcard.list.others: true
+            nerdreportcard.edit: true
+            nerdreportcard.search: true
